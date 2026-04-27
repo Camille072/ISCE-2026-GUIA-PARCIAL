@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICSE 2026 — Guía Primer Parcial</title>
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --bg2: #181818;
+    --bg3: #212121;
+    --bg4: #2a2a2a;
+    --border: #333;
+    --border2: #444;
+    --text: #e8e6e1;
+    --text2: #a09e99;
+    --text3: #6b6966;
+    --blue: #4a9eff;
+    --blue-bg: #0d2140;
+    --blue-dim: #1a3a6b;
+    --teal: #3fcf8e;
+    --teal-bg: #062918;
+    --amber: #f0a030;
+    --amber-bg: #2a1a00;
+    --red: #f06060;
+    --red-bg: #2a0a0a;
+    --purple: #a088f0;
+    --purple-bg: #1a0f38;
+    --coral: #f07060;
+    --coral-bg: #2a0d08;
+    --green: #60c060;
+    --green-bg: #0a1f0a;
+    --gold: #e8c060;
+    --gold-bg: #231900;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  /* HEADER */
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .site-header h1 {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+  }
+  .site-header p { color: var(--text2); font-size: 14px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .badge {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 99px;
+    letter-spacing: 0.03em;
+  }
+  .badge-parcial { background: var(--red-bg); color: var(--red); border: 1px solid #4a1010; }
+  .badge-fecha { background: var(--amber-bg); color: var(--amber); border: 1px solid #4a2a00; }
+  .badge-temas { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-dim); }
+
+  /* ALERT BOX */
+  .alert {
+    background: var(--gold-bg);
+    border: 1px solid #5a4a00;
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    font-size: 13.5px;
+  }
+  .alert-title { color: var(--gold); font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+  .alert p { color: #c8aa50; line-height: 1.6; }
+  .alert strong { color: var(--gold); }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 0;
+    margin-bottom: 2rem;
+    z-index: 100;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  nav a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 5px 11px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  nav a:hover { background: var(--bg3); color: var(--text); border-color: var(--border); }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 3.5rem;
+    padding-top: 0.5rem;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 20px; font-weight: 600; color: var(--text); }
+  .section-header p { font-size: 13px; color: var(--text2); margin-top: 2px; }
+
+  /* SUBSECTIONS */
+  .subsection { margin-bottom: 1.75rem; }
+  .subsection-title {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text3);
+    margin-bottom: 0.75rem;
+    padding-left: 10px;
+    border-left: 2px solid var(--border2);
+  }
+
+  /* CARDS GRID */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 1rem; }
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+  }
+  .card-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
+  .card-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .card-body { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+  /* KEY BOX */
+  .keybox {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border2);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    font-size: 13.5px;
+    color: var(--text2);
+    line-height: 1.7;
+    margin: 0.6rem 0;
+  }
+  .keybox strong { color: var(--text); }
+  .keybox.blue { border-left-color: var(--blue); background: var(--blue-bg); color: #8fc8ff; }
+  .keybox.blue strong { color: var(--blue); }
+  .keybox.teal { border-left-color: var(--teal); background: var(--teal-bg); color: #7ae0b4; }
+  .keybox.teal strong { color: var(--teal); }
+  .keybox.amber { border-left-color: var(--amber); background: var(--amber-bg); color: #c8882a; }
+  .keybox.amber strong { color: var(--amber); }
+  .keybox.red { border-left-color: var(--red); background: var(--red-bg); color: #e89090; }
+  .keybox.red strong { color: var(--red); }
+  .keybox.purple { border-left-color: var(--purple); background: var(--purple-bg); color: #c0aaf8; }
+  .keybox.purple strong { color: var(--purple); }
+  .keybox.gold { border-left-color: var(--gold); background: var(--gold-bg); color: #c8aa50; }
+  .keybox.gold strong { color: var(--gold); }
+
+  /* EXAM TIP */
+  .exam-tip {
+    background: var(--gold-bg);
+    border: 1px solid #4a3800;
+    border-left: 3px solid var(--gold);
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    font-size: 13px;
+    color: #b89840;
+    margin: 0.5rem 0;
+  }
+  .exam-tip::before { content: "★ Tip de examen: "; color: var(--gold); font-weight: 600; }
+
+  /* TABLE */
+  .table-wrap {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0.75rem 0 1.25rem;
+    overflow-x: auto;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 500px; }
+  thead tr { background: var(--bg3); }
+  th {
+    text-align: left;
+    padding: 10px 14px;
+    color: var(--text2);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 9px 14px;
+    color: var(--text2);
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  td:first-child { color: var(--text3); font-size: 12px; font-weight: 600; background: var(--bg3); white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg2); }
+  tr:hover td:first-child { background: var(--bg3); }
+
+  /* TIMELINE */
+  .timeline { margin: 0.75rem 0 1.25rem; }
+  .tl-item { display: flex; gap: 14px; margin-bottom: 1.1rem; }
+  .tl-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 14px; }
+  .tl-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+  .tl-line-seg { flex: 1; width: 1px; background: var(--border); margin-top: 4px; min-height: 16px; }
+  .tl-content { flex: 1; padding-bottom: 0.4rem; }
+  .tl-year { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 2px; }
+  .tl-title { font-size: 13.5px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .tl-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+  /* PILLS */
+  .pills { display: flex; flex-wrap: wrap; gap: 6px; margin: 0.6rem 0; }
+  .pill {
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 99px;
+    border: 1px solid;
+  }
+  .pill-blue { background: var(--blue-bg); color: #7abfff; border-color: var(--blue-dim); }
+  .pill-teal { background: var(--teal-bg); color: #5ecf9e; border-color: #0a3d20; }
+  .pill-amber { background: var(--amber-bg); color: #d08828; border-color: #3a2200; }
+  .pill-red { background: var(--red-bg); color: #e08080; border-color: #3a1010; }
+  .pill-purple { background: var(--purple-bg); color: #b0a0f8; border-color: #2a1a50; }
+
+  /* ACCORDION */
+  .accordion { margin: 0.5rem 0 1.25rem; }
+  .acc-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 6px;
+    overflow: hidden;
+  }
+  .acc-q {
+    padding: 0.8rem 1rem;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    user-select: none;
+  }
+  .acc-q:hover { background: var(--bg3); }
+  .acc-icon {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--bg4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    color: var(--text3);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+    margin-top: 2px;
+  }
+  .acc-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .acc-a-inner {
+    padding: 0 1rem 0.9rem;
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.7;
+    border-top: 1px solid var(--border);
+    padding-top: 0.8rem;
+  }
+  .acc-a-inner strong { color: var(--text); }
+  .acc-item.open .acc-icon { transform: rotate(45deg); }
+  .acc-item.open .acc-a { max-height: 600px; }
+
+  /* TRIANGLE GOLD SECTION */
+  .triangle-section {
+    background: linear-gradient(135deg, #1a1200 0%, #0f0e00 100%);
+    border: 1px solid #5a4800;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .triangle-title {
+    color: var(--gold);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .triangle-subtitle { color: #8a7a30; font-size: 13px; margin-bottom: 1.25rem; }
+  .triangle-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; }
+  .tri-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid #3a3000;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  .tri-card-title { color: var(--gold); font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .tri-card-sub { color: #8a7a30; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .tri-card p { color: #a09030; font-size: 13px; line-height: 1.6; }
+  .tri-card strong { color: #d4a830; }
+
+  /* TRAPS SECTION */
+  .traps-section {
+    background: var(--red-bg);
+    border: 1px solid #3a1010;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .traps-title { color: var(--red); font-size: 15px; font-weight: 700; margin-bottom: 1rem; }
+  .trap-item { display: flex; gap: 10px; margin-bottom: 0.75rem; }
+  .trap-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; margin-top: 8px; }
+  .trap-text { font-size: 13px; color: #e08080; line-height: 1.6; }
+  .trap-text strong { color: var(--red); }
+
+  /* DIVIDER */
+  hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+  /* FOOTER */
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 12px;
+    color: var(--text3);
+  }
+
+  /* PRINT */
+  @media print {
+    nav { display: none; }
+    body { padding: 1rem; }
+    .acc-a { max-height: none !important; }
+    .acc-a-inner { display: block; }
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>ICSE 2026 — Guía Primer Parcial</h1>
+  <p>Semanas 1 a 5 · Conceptos clave, cuadros comparativos, cronología y preguntas de guía</p>
+  <div class="badges">
+    <span class="badge badge-parcial">Parcial 08/05/2026</span>
+    <span class="badge badge-fecha">Semanas 1–5</span>
+    <span class="badge badge-temas">7 ejes temáticos</span>
+  </div>
+</header>
+
+<!-- TRIÁNGULO DE ORO -->
+<div class="triangle-section">
+  <div class="triangle-title">★ Triángulo de Oro — Lo que entra en todos los exámenes</div>
+  <div class="triangle-subtitle">Tres autores que aparecen en casi todos los modelos. Si los dominás, tenés gran parte resuelta.</div>
+  <div class="triangle-cards">
+    <div class="tri-card">
+      <div class="tri-card-sub">Autor 1</div>
+      <div class="tri-card-title">Max Weber — El Estado</div>
+      <p>Monopolio de la violencia legítima + las 3 legitimidades. <strong>Tip:</strong> también preguntan qué pasa si el Estado pierde ese monopolio → "Estado fallido".</p>
+    </div>
+    <div class="tri-card">
+      <div class="tri-card-sub">Autor 2</div>
+      <div class="tri-card-title">Robert Dahl — Poliarquía</div>
+      <p>Tema estrella. Te dan una situación y preguntan qué requisito falta. <strong>Sabé los 6 de memoria.</strong> Definición mínima y procedimental de democracia.</p>
+    </div>
+    <div class="tri-card">
+      <div class="tri-card-sub">Autor 3</div>
+      <div class="tri-card-title">Romero — Punto de inflexión</div>
+      <p><strong>1985 es el año clave:</strong> Juicio a las Juntas (justicia) + Plan Austral (economía). Preguntan por qué el Plan falló: puja distributiva + gasto público acumulado.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TRAMPAS -->
+<div class="traps-section">
+  <div class="traps-title">⚠ Trampas recurrentes en los exámenes</div>
+  <div class="trap-item"><div class="trap-dot"></div><div class="trap-text"><strong>Golpe vs. Interrupción institucional:</strong> Frondizi 1962 es el ejemplo favorito. Lo sacan militares, pero asume Guido por acefalía → se mantiene "fachada" de legalidad, no hubo cambio de régimen.</div></div>
+  <div class="trap-item"><div class="trap-dot"></div><div class="trap-text"><strong>Estado vs. Gobierno:</strong> confundirlos es un error básico. El Estado es permanente, el gobierno cambia.</div></div>
+  <div class="trap-item"><div class="trap-dot"></div><div class="trap-text"><strong>Doble Estado en la dictadura:</strong> coexiste un Estado administrativo visible y un Estado clandestino (centros de detención). No es solo represión, es un sistema paralelo.</div></div>
+  <div class="trap-item"><div class="trap-dot"></div><div class="trap-text"><strong>Genocidio y grupos protegidos:</strong> la Convención de 1948 protege grupos nacionales, étnicos, raciales y religiosos. Los grupos <em>políticos</em> quedaron afuera (debate sobre la dictadura argentina).</div></div>
+  <div class="trap-item"><div class="trap-dot"></div><div class="trap-text"><strong>Poliarquía ≠ democracia perfecta:</strong> es la definición <em>mínima</em>. Una democracia puede ser poliarquía aunque tenga inequidad económica.</div></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#s1">1. Estado</a>
+  <a href="#s2">2. Nación</a>
+  <a href="#s3">3. Sociedad</a>
+  <a href="#s4">4. Regímenes</a>
+  <a href="#s5">5. Golpes y Terror</a>
+  <a href="#s6">6. Argentina 66–83</a>
+  <a href="#s7">7. Transición y DDHH</a>
+</nav>
+
+<!-- ========== SECCIÓN 1 ========== -->
+<section class="section" id="s1">
+  <div class="section-header">
+    <div class="section-num" style="background:var(--blue-bg);color:var(--blue);">1</div>
+    <div>
+      <h2>Estado y sus tipos</h2>
+      <p>Weber · Hobbes · Legitimidad · Modelos históricos</p>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Definición central — Weber</div>
+    <div class="cards">
+      <div class="card" style="border-color:var(--blue-dim)">
+        <div class="card-label" style="color:var(--blue)">Definición</div>
+        <div class="card-title">Monopolio de la violencia legítima</div>
+        <div class="card-body">Comunidad humana que, dentro de un territorio, tiene el monopolio del uso <em>legítimo</em> de la fuerza. Solo el Estado puede usar la fuerza de manera legal y aceptada (policía, ejército).</div>
+      </div>
+      <div class="card" style="border-color:var(--blue-dim)">
+        <div class="card-label" style="color:var(--blue)">Elementos constitutivos</div>
+        <div class="card-title">Territorio · Población · Soberanía · Normas</div>
+        <div class="card-body">Esta definición "jurídica" incluye modelos tan distintos como el liberal, el fascista o el socialista porque todos comparten estos cuatro elementos básicos.</div>
+      </div>
+      <div class="card" style="border-color:var(--blue-dim)">
+        <div class="card-label" style="color:var(--blue)">Distinción clave</div>
+        <div class="card-title">Estado ≠ Gobierno</div>
+        <div class="card-body">El Estado es la estructura permanente. El gobierno es quien lo administra de forma temporal. Los gobiernos cambian; el Estado continúa.</div>
+      </div>
+    </div>
+    <div class="keybox blue"><strong>Hobbes:</strong> el Estado surge para evitar la "guerra de todos contra todos". Sin poder común, los individuos viven en conflicto permanente (estado de naturaleza).</div>
+    <div class="keybox blue"><strong>Estado fallido:</strong> cuando grupos fuera del Estado ejercen violencia en su territorio, el Estado pierde el monopolio y su autoridad se debilita. Es la consecuencia de perder ese control.</div>
+    <div class="exam-tip">Siempre que pregunten por Weber, mencioná los dos elementos: territorio + monopolio de la violencia LEGÍTIMA (el "legítima" es lo que diferencia al Estado).</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Los 3 tipos de legitimidad — Weber</div>
+    <div class="cards">
+      <div class="card" style="border-color:#2a2060">
+        <div class="card-label" style="color:var(--purple)">Tradicional</div>
+        <div class="card-title">Costumbre y hábito</div>
+        <div class="card-body">Se obedece porque "siempre fue así". La costumbre hereditaria valida la autoridad. Ej.: monarquías antiguas.</div>
+      </div>
+      <div class="card" style="border-color:#3a1a10">
+        <div class="card-label" style="color:var(--coral)">Carismática</div>
+        <div class="card-title">Magnetismo del líder</div>
+        <div class="card-body">Obediencia por confianza en las cualidades personales extraordinarias de un líder. Sin ese líder, la legitimidad se desvanece. Ej.: Perón, Yrigoyen, líderes populistas.</div>
+      </div>
+      <div class="card" style="border-color:var(--blue-dim)">
+        <div class="card-label" style="color:var(--blue)">Legal-racional</div>
+        <div class="card-title">Normas e instituciones</div>
+        <div class="card-body">Se obedece la ley, no la persona. Las normas son racionales y creadas democráticamente. Base de los Estados modernos democráticos.</div>
+      </div>
+    </div>
+    <div class="exam-tip">A veces preguntan en qué tipo de legitimidad se basa tal régimen. La dictadura puede tener carismática o tradicional, nunca legal-racional (porque no respeta las normas).</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Modelos históricos de Estado — cuadro comparativo</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tipo</th><th>Características centrales</th><th>Surgimiento / contexto</th><th>Economía</th></tr></thead>
+        <tbody>
+          <tr><td>Liberal</td><td>División de poderes, derechos individuales, representación, Estado limitado</td><td>Reacción al Estado absoluto. Revoluciones inglesa, francesa y americana (s. XVIII)</td><td>Libre mercado, mínima intervención estatal</td></tr>
+          <tr><td>Socialista / Comunista</td><td>Partido único, poder concentrado, busca igualdad. Sin libertades políticas</td><td>Crítica al capitalismo liberal. URSS como ejemplo central</td><td>El Estado controla la economía, elimina o limita propiedad privada</td></tr>
+          <tr><td>Fascista</td><td>Nacionalismo extremo, totalitario, individuo subordinado al Estado, violencia represiva</td><td>Reacción al liberalismo, pero distinta del comunismo. Entreguerras (Italia, Alemania)</td><td>Corporativista: Estado interviene pero defiende propiedad privada bajo control nacional</td></tr>
+          <tr><td>De Bienestar</td><td>Capitalismo + políticas sociales (salud, educación, jubilaciones, subsidios). Redistribuye riqueza</td><td>Post Segunda Guerra Mundial para fortalecer democracias y evitar nuevas crisis</td><td>Capitalismo regulado + Estado como proveedor de servicios sociales</td></tr>
+          <tr><td>Neoliberal</td><td>Achica el Estado, privatiza, desregula, abre el comercio exterior</td><td>Crisis del Estado de Bienestar en los 70. Consenso de Washington. AL en los 90</td><td>El mercado asigna recursos. Se reduce el gasto social. "El crecimiento se derrama"</td></tr>
+          <tr><td>Plurinacional</td><td>Reconoce múltiples pueblos y culturas, pluralismo jurídico, autogobierno indígena</td><td>Respuesta a la "ola rosa" latinoamericana en el s. XXI. Bolivia, Ecuador</td><td>Variable. Combina elementos distintos según el país</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="keybox amber"><strong>Lógica de surgimiento:</strong> cada modelo aparece como reacción al anterior. Liberal → reacción al absolutismo. Fascista y socialista → reacción al liberalismo. Bienestar → reacción al fascismo y a las crisis capitalistas. Neoliberal → reacción al Bienestar. Plurinacional → reacción al neoliberalismo.</div>
+    <div class="exam-tip">En los exámenes aparece mucho la comparación Estado de Bienestar vs. Neoliberal. Clave: el de Bienestar <em>interviene</em> para dar derechos sociales; el Neoliberal se <em>retira</em>, privatiza y busca equilibrio fiscal.</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Preguntas frecuentes de guía — hacé clic para ver la respuesta</div>
+    <div class="accordion" id="acc-estado"></div>
+  </div>
+</section>
+
+<!-- ========== SECCIÓN 2 ========== -->
+<section class="section" id="s2">
+  <div class="section-header">
+    <div class="section-num" style="background:var(--teal-bg);color:var(--teal);">2</div>
+    <div>
+      <h2>Nación e identidad</h2>
+      <p>Gellner · Anderson · Hobsbawm · Construcción de la nación argentina</p>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">La diferencia fundamental</div>
+    <div class="cards">
+      <div class="card" style="border-color:var(--blue-dim)">
+        <div class="card-label" style="color:var(--blue)">Estado</div>
+        <div class="card-title">Institución política formal</div>
+        <div class="card-body">Estructura con territorio, normas y autoridad. Es institucional y jurídico. Puede existir sin nación definida.</div>
+      </div>
+      <div class="card" style="border-color:#0a3d20">
+        <div class="card-label" style="color:var(--teal)">Nación</div>
+        <div class="card-title">Identidad y pertenencia</div>
+        <div class="card-body">Comunidad imaginada con lengua, historia, cultura y símbolos compartidos. No siempre tiene Estado propio.</div>
+      </div>
+    </div>
+    <div class="keybox teal"><strong>Ejemplo clave:</strong> el pueblo kurdo tiene nación (identidad, lengua, cultura) pero no tiene Estado propio. Argentina en cambio formó el Estado <em>antes</em> que la nación.</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">¿Qué es la nación? — dos concepciones</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label" style="color:var(--coral)">Concepción objetiva</div>
+        <div class="card-title">Rasgos comunes</div>
+        <div class="card-body">La nación se define por rasgos compartidos: lengua, territorio, etnia, religión, cultura. Son elementos "objetivos" que unen a las personas.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--purple)">Concepción constructivista (histórica)</div>
+        <div class="card-title">Construcción social moderna</div>
+        <div class="card-body"><strong>Gellner, Anderson y Hobsbawm:</strong> la nación NO es natural ni eterna. Es una invención moderna (s. XIX) ligada al Estado moderno, al capitalismo y a la imprenta.</div>
+      </div>
+    </div>
+    <div class="keybox purple"><strong>Anderson — "Comunidad imaginada":</strong> los miembros de una nación nunca se conocen todos entre sí, pero se <em>imaginan</em> como comunidad. La imprenta y los periódicos fueron clave para crear ese imaginario compartido.</div>
+    <div class="keybox purple"><strong>Hobsbawm — "Tradiciones inventadas":</strong> muchas de las tradiciones que parecen antiguas fueron inventadas en el s. XIX para crear cohesión nacional (himnos, banderas, rituales).</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Construcción de la nación argentina — cronología</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot" style="background:var(--teal)"></div><div class="tl-line-seg"></div></div>
+        <div class="tl-content">
+          <div class="tl-year" style="color:var(--teal)">1853–1862</div>
+          <div class="tl-title">Organización del Estado</div>
+          <div class="tl-text">Constitución de 1853. Consolidación en 1862 (Mitre). El Estado se forma <em>antes</em> que la nación — al revés de Europa.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot" style="background:var(--teal)"></div><div class="tl-line-seg"></div></div>
+        <div class="tl-content">
+          <div class="tl-year" style="color:var(--teal)">1880</div>
+          <div class="tl-title">Consolidación del Estado nacional</div>
+          <div class="tl-text">Federalización de Buenos Aires. El Estado controla definitivamente el territorio y el monopolio de la fuerza.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot" style="background:var(--teal)"></div><div class="tl-line-seg"></div></div>
+        <div class="tl-content">
+          <div class="tl-year" style="color:var(--teal)">1880–1910</div>
+          <div class="tl-title">Construcción de la identidad nacional</div>
+          <div class="tl-text">Alta inmigración masiva → urgencia de crear identidad. Herramientas: educación pública (Ley 1420), fiestas patrias, historia oficial, símbolos nacionales, servicio militar obligatorio.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot" style="background:var(--teal)"></div></div>
+        <div class="tl-content">
+          <div class="tl-year" style="color:var(--teal)">Tensión central</div>
+          <div class="tl-title">"Crisol de razas" vs. identidad criolla</div>
+          <div class="tl-text">"Crisol de razas" proponía integrar a los inmigrantes. La identidad criolla/hispánica propugnaba la continuidad de la cultura previa. Hacia 1910 prevalece la segunda.</div>
+        </div>
+      </div>
+    </div>
+    <div class="exam-tip">La nación no es algo dado: es una construcción histórica cambiante. Argentina invirtió el orden europeo: primero el Estado, después la nación (mediante políticas públicas).</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Preguntas de guía</div>
+    <div class="accordion" id="acc-nacion"></div>
+  </div>
+</section>
+
+<!-- ========== SECCIÓN 3 ========== -->
+<section class="section" id="s3">
+  <div class="section-header">
+    <div class="section-num" style="background:var(--purple-bg);color:var(--purple);">3</div>
+    <div>
+      <h2>Sociedad, ciudadanía y acción social</h2>
+      <p>Weber · Bourdieu · Ciudadanía · Sociedad civil · Actores sociales</p>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Persona · Ciudadano · Ciudadanía</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label" style="color:var(--blue)">Persona</div>
+        <div class="card-title">Derechos humanos universales</div>
+        <div class="card-body">Todo ser humano tiene derechos por el solo hecho de existir, independientemente del Estado al que pertenezca.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--teal)">Ciudadano</div>
+        <div class="card-title">Derechos otorgados por el Estado</div>
+        <div class="card-body">Quien posee derechos específicos reconocidos por un Estado particular. Cambia según el país y la época.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--coral)">Ciudadanía</div>
+        <div class="card-title">"El derecho a tener derechos"</div>
+        <div class="card-body">Proceso histórico de expansión y disputa. Cada ampliación modifica la distribución del poder social. No es algo dado, se conquista.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Acción social — los 4 tipos de Weber</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label" style="color:var(--purple)">Tradicional</div>
+        <div class="card-body">Por costumbre. "Siempre se hizo así." La tradición guía la conducta sin reflexión racional.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--coral)">Afectiva</div>
+        <div class="card-body">Motivada por emociones y sentimientos del momento. Reacciones afectivas, pasionales.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--teal)">Racional con arreglo a valores</div>
+        <div class="card-body">Guiada por principios éticos o morales independientemente de las consecuencias. El valor en sí mismo orienta la acción.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--blue)">Racional con arreglo a fines</div>
+        <div class="card-body">Cálculo racional de medios y fines. La más "moderna" para Weber. Propia del capitalismo y la burocracia.</div>
+      </div>
+    </div>
+    <div class="keybox purple"><strong>Definición:</strong> acción social = conducta con <em>sentido</em> para quien la realiza, <em>orientada hacia otros</em>. No toda conducta es acción social (ej.: tropezar no lo es).</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Estratificación social — Weber y Bourdieu</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Dimensión</th><th>Concepto</th><th>Definición</th></tr></thead>
+        <tbody>
+          <tr><td>Económica (Weber)</td><td>Clases</td><td>Posición según acceso a bienes y al mercado. Determinada por la propiedad.</td></tr>
+          <tr><td>Social (Weber)</td><td>Estamentos</td><td>Estilo de vida y prestigio social. No se reduce a lo económico.</td></tr>
+          <tr><td>Política (Weber)</td><td>Partidos</td><td>Disputa por influir en el poder colectivo y dirigir la acción.</td></tr>
+          <tr><td>Capital (Bourdieu)</td><td>Campos y capitales</td><td>Las posiciones no son fijas. Dependen de capital económico, cultural y social. La trayectoria importa.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Sociedad civil y actores sociales</div>
+    <div class="keybox"><strong>Sociedad civil:</strong> espacio de organización de ciudadanos <em>fuera</em> del Estado. Incluye sindicatos, ONGs, iglesias, medios. Su función central es <strong>limitar y controlar el poder estatal</strong>.</div>
+    <div class="keybox"><strong>Actores sociales:</strong> grupos organizados que actúan para defender intereses y objetivos comunes. La sociedad cambia por la interacción y el <em>conflicto</em> entre actores con intereses distintos.</div>
+    <div class="keybox teal"><strong>El Cordobazo (1969):</strong> ejemplo emblemático de acción conjunta. El movimiento obrero y el estudiantil se unieron contra la dictadura de Onganía. Demostró que la acción colectiva puede cambiar el rumbo político.</div>
+  </div>
+</section>
+
+<!-- ========== SECCIÓN 4 ========== -->
+<section class="section" id="s4">
+  <div class="section-header">
+    <div class="section-num" style="background:var(--blue-bg);color:var(--blue);">4</div>
+    <div>
+      <h2>Regímenes políticos y democracia</h2>
+      <p>Dahl · Poliarquía · Populismo · Federalismo</p>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Concepto de régimen político</div>
+    <div class="keybox blue"><strong>Régimen político:</strong> conjunto de normas que determinan <em>cómo se accede al poder y cómo se ejerce</em>. Distinguir: régimen ≠ gobierno (el gobierno cambia dentro del mismo régimen).</div>
+    <div class="keybox blue"><strong>Transición de régimen:</strong> cambio en las reglas del juego, no solo en quién gobierna. En Argentina: múltiples transiciones entre dictaduras y democracias. Desde 1983 se mantiene el régimen democrático.</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Democracia vs. Autoritarismo</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Dimensión</th><th>Democracia</th><th>Autoritarismo</th></tr></thead>
+        <tbody>
+          <tr><td>Acceso al poder</td><td>Elecciones libres, competitivas, con incertidumbre real sobre el resultado</td><td>No surge de elecciones; concentración en una persona o grupo</td></tr>
+          <tr><td>Límites al poder</td><td>Estado de derecho, división de poderes, control recíproco</td><td>No está limitado por leyes ni instituciones</td></tr>
+          <tr><td>Derechos</td><td>Garantía de derechos civiles y políticos (expresión, asociación, participación)</td><td>No garantiza libertades políticas. Suprime la oposición</td></tr>
+          <tr><td>Alternancia</td><td>Posibilidad real de que el gobierno pierda y deje el poder</td><td>Sin alternancia; el poder se perpetúa</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">La Poliarquía de Robert Dahl — los 6 atributos</div>
+    <div class="keybox blue"><strong>Poliarquía:</strong> definición <em>mínima y procedimental</em> de democracia. Se centra en reglas e instituciones (no en igualdad económica o social). Sirve para distinguir con claridad democracia de autoritarismo.</div>
+    <div class="pills">
+      <span class="pill pill-blue">1. Sufragio universal, igual y secreto</span>
+      <span class="pill pill-blue">2. Elecciones limpias, periódicas y competitivas</span>
+      <span class="pill pill-blue">3. Ejercicio del poder sin condicionamientos externos</span>
+      <span class="pill pill-blue">4. Alternancia real entre partidos</span>
+      <span class="pill pill-blue">5. Pluralidad de la oferta electoral</span>
+      <span class="pill pill-blue">6. Libertad de expresión e información diversa</span>
+    </div>
+    <div class="exam-tip">En el examen pueden darte una situación hipotética y preguntarte si es poliarquía. Revisá uno por uno: ¿hay sufragio universal? ¿son las elecciones limpias? ¿hay libertad de expresión? El que falta es la trampa.</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Origen y expansión de la democracia</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot" style="background:var(--blue)"></div><div class="tl-line-seg"></div></div>
+        <div class="tl-content"><div class="tl-year" style="color:var(--blue)">Grecia antigua</div><div class="tl-title">Democracia directa</div><div class="tl-text">Gobierno directo del demos (solo varones libres). Entra en crisis y desaparece durante siglos.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot" style="background:var(--blue)"></div><div class="tl-line-seg"></div></div>
+        <div class="tl-content"><div class="tl-year" style="color:var(--blue)">s. XVIII</div><div class="tl-title">Revoluciones burguesas</div><div class="tl-text">Revoluciones de EEUU (1776) y Francia (1789) impulsan el retorno de ideas democráticas.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot" style="background:var(--blue)"></div><div class="tl-line-seg"></div></div>
+        <div class="tl-content"><div class="tl-year" style="color:var(--blue)">s. XIX</div><div class="tl-title">Estados liberales y republicanos</div><div class="tl-text">Liberalismo (libertad individual, igualdad ante la ley) + Republicanismo (división de poderes). La dimensión democrática llega más tarde con el sufragio universal.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot" style="background:var(--blue)"></div><div class="tl-line-seg"></div></div>
+        <div class="tl-content"><div class="tl-year" style="color:var(--blue)">s. XX</div><div class="tl-title">Crisis y expansión global</div><div class="tl-text">Las guerras mundiales pusieron en crisis la democracia. Post WWII se consolida en Occidente. A fines del s. XX se convierte en el sistema dominante.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Populismo — definición y características</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label" style="color:var(--amber)">¿Qué es?</div>
+        <div class="card-body">Concepto polémico y polisémico: puede ser régimen, liderazgo, ideología, discurso o cultura política. No tiene una sola definición.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--amber)">Rasgo central</div>
+        <div class="card-body">Construcción del "pueblo" vs. la "élite corrupta". División entre "nosotros" (el pueblo) y "ellos" (el establishment). El líder se presenta como la voz del pueblo.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--amber)">Relación con democracia</div>
+        <div class="card-body">Puede coexistir con elecciones, pero tiende a <em>erosionar</em> la calidad democrática: concentra poder en el Ejecutivo, debilita la división de poderes y desvaloriza la intermediación institucional.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--amber)">Casos argentinos</div>
+        <div class="card-body"><strong>Yrigoyen:</strong> liderazgo carismático, confrontación con el régimen oligárquico, personalización de la UCR. <strong>Perón:</strong> partido propio desde el Estado, mayor control de medios y búsqueda de permanencia.</div>
+      </div>
+    </div>
+    <div class="keybox amber"><strong>Populismo global s. XXI:</strong> Trump (EEUU), Brexit (Reino Unido), Modi (India), Bolsonaro (Brasil), Milei (Argentina). El fenómeno no es solo latinoamericano.</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Federalismo argentino</div>
+    <div class="keybox"><strong>La Constitución argentina</strong> define al país como representativo, republicano y <strong>federal</strong>. Hay tres niveles: nacional, provincial y CABA. Cada uno tiene autoridades y poderes propios.</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Modelo</th><th>Descripción</th><th>Ejemplo</th></tr></thead>
+        <tbody>
+          <tr><td>Coming together</td><td>Unidades independientes se unen voluntariamente para formar un Estado federal</td><td>Estados Unidos</td></tr>
+          <tr><td>Holding together</td><td>Un Estado unitario se federaliza para mantener la unidad ante presiones centrífugas</td><td>España, India</td></tr>
+          <tr><td>Putting together</td><td>Un poder central impone la unión territorial sobre unidades que no la eligieron</td><td>Unión Soviética</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Preguntas de guía</div>
+    <div class="accordion" id="acc-regimenes"></div>
+  </div>
+</section>
+
+<!-- ========== SECCIÓN 5 ========== -->
+<section class="section" id="s5">
+  <div class="section-header">
+    <div class="section-num" style="background:var(--red-bg);color:var(--red);">5</div>
+    <div>
+      <h2>Golpes de Estado, terrorismo y genocidio</h2>
+      <p>Deich · Statello · Lamarque · Lemkin</p>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Golpes de Estado — tipología</div>
+    <div class="keybox red"><strong>Definición:</strong> toma del poder por la fuerza, rompiendo el orden constitucional. Es <em>siempre ilegal</em> y <em>siempre implica violencia</em> (aunque varíe su grado). No es lo mismo que un cambio de gobierno.</div>
+    <div class="cards">
+      <div class="card" style="border-color:#3a1010">
+        <div class="card-label" style="color:var(--red)">Golpe militar</div>
+        <div class="card-body">Las Fuerzas Armadas desplazan al gobierno. Caso más frecuente en América Latina durante el s. XX.</div>
+      </div>
+      <div class="card" style="border-color:#3a1010">
+        <div class="card-label" style="color:var(--red)">Golpe civil</div>
+        <div class="card-body">Actores civiles (empresarios, sectores políticos, medios) promueven o lideran la ruptura con participación militar.</div>
+      </div>
+      <div class="card" style="border-color:#3a1010">
+        <div class="card-label" style="color:var(--red)">Autogolpe</div>
+        <div class="card-body">El propio gobernante concentra poder vulnerando el orden constitucional. Ej.: Fujimori en Perú (1992).</div>
+      </div>
+      <div class="card" style="border-color:#2a1a50">
+        <div class="card-label" style="color:var(--purple)">Interrupción institucional</div>
+        <div class="card-body">El presidente abandona el cargo sin golpe militar clásico. Implica movilización social, acción del Congreso o del Poder Judicial. <em>Sin cambio de régimen.</em> Ej.: De la Rúa 2001, Frondizi 1962.</div>
+      </div>
+    </div>
+    <div class="exam-tip"><strong>Frondizi 1962 (favorito del examen):</strong> los militares lo presionaron para renunciar, pero asumió el presidente provisional del Senado (Guido) siguiendo la ley de acefalía. Técnicamente es una interrupción institucional, no un golpe clásico.</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Terrorismo político — tipos y olas</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label" style="color:var(--amber)">Terrorismo</div>
+        <div class="card-title">Violencia política deliberada</div>
+        <div class="card-body">Uso de violencia deliberada contra civiles para generar miedo y lograr objetivos políticos. Tiene una dimensión <em>comunicativa</em>: el acto es un mensaje.</div>
+      </div>
+      <div class="card" style="border-color:#3a1010">
+        <div class="card-label" style="color:var(--red)">Terrorismo de Estado</div>
+        <div class="card-title">"Doble Estado"</div>
+        <div class="card-body">El propio Estado usa terror sistemático. Coexiste un Estado administrativo visible y un Estado clandestino (centros de detención, grupos parapolicialesales). Viola el Estado de derecho que dice proteger.</div>
+      </div>
+    </div>
+    <div class="keybox amber"><strong>Las 4 olas del terrorismo (Rapoport):</strong> 1) Anarquista (fines s. XIX) → 2) Anticolonial (post WWII) → 3) Nueva izquierda (60-70s) → 4) Religiosa (desde los 80s). Argentina se enmarca principalmente en la tercera ola.</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Genocidio — Lemkin y la Convención de 1948</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Elemento</th><th>Definición / Detalle</th></tr></thead>
+        <tbody>
+          <tr><td>Concepto (Lemkin)</td><td>Destrucción de grupos como tales, no de individuos aislados. Fenómeno moderno, planificado y organizado. Incluye dimensión cultural (no solo física).</td></tr>
+          <tr><td>Dolus specialis</td><td>Elemento mental fundamental: intención específica de destruir total o parcialmente a un grupo. Sin esta intención, puede ser otro crimen pero no genocidio.</td></tr>
+          <tr><td>Grupos protegidos</td><td>Nacional, étnico, racial y religioso. Los grupos políticos y sociales quedaron <em>excluidos</em> de la Convención de 1948 (debate sobre Argentina).</td></tr>
+          <tr><td>Antecedentes</td><td>Juicios de Núremberg (1945) + Resolución ONU 1946 → Convención del Genocidio 1948.</td></tr>
+          <tr><td>Debate argentino</td><td>Si la dictadura del 76 fue genocidio: los grupos políticos no están en la Convención, pero las Cs. Sociales debaten si fue genocidio político o de clase.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="exam-tip">La distinción entre grupos protegidos y no protegidos (especialmente la exclusión de los grupos políticos) es una trampa frecuente. Los grupos políticos NO están en la Convención de 1948.</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Preguntas de guía</div>
+    <div class="accordion" id="acc-violencia"></div>
+  </div>
+</section>
+
+<!-- ========== SECCIÓN 6 ========== -->
+<section class="section" id="s6">
+  <div class="section-header">
+    <div class="section-num" style="background:#1a0800;color:var(--coral);">6</div>
+    <div>
+      <h2>Argentina 1966–1983</h2>
+      <p>Romero Caps. VI y VII · Dictaduras · Proceso · Malvinas</p>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Golpes en Argentina — cronología completa</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot" style="background:var(--red)"></div><div class="tl-line-seg"></div></div>
+        <div class="tl-content"><div class="tl-year" style="color:var(--red)">1930</div><div class="tl-title">Primer golpe — Uriburu</div><div class="tl-text">Derroca a Yrigoyen. Comienza la "Década Infame". Carácter transitorio: los militares no pretenden quedarse.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot" style="background:var(--red)"></div><div class="tl-line-seg"></div></div>
+        <div class="tl-content"><div class="tl-year" style="color:var(--red)">1943</div><div class="tl-title">Golpe del GOU</div><div class="tl-text">Contexto de la Segunda Guerra Mundial. De este proceso emerge Perón como figura política central.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot" style="background:var(--red)"></div><div class="tl-line-seg"></div></div>
+        <div class="tl-content"><div class="tl-year" style="color:var(--red)">1955</div><div class="tl-title">Revolución Libertadora</div><div class="tl-text">Derroca a Perón. Inicia la proscripción del peronismo que dura hasta 1973. Período de inestabilidad crónica.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot" style="background:var(--amber)"></div><div class="tl-line-seg"></div></div>
+        <div class="tl-content"><div class="tl-year" style="color:var(--amber)">1962</div><div class="tl-title">Caso Frondizi — INTERRUPCIÓN institucional</div><div class="tl-text">Presión militar, pero asume el titular del Senado (Guido) por acefalía. No hubo cambio de régimen. Ejemplo favorito en exámenes.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot" style="background:var(--red)"></div><div class="tl-line-seg"></div></div>
+        <div class="tl-content"><div class="tl-year" style="color:var(--red)">1966</div><div class="tl-title">Revolución Argentina — Onganía</div><div class="tl-text">Golpe contra Illia. Primer golpe con intención de permanencia. Proyecto de modernización autoritaria. Genera el Cordobazo (1969) como respuesta.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot" style="background:var(--teal)"></div><div class="tl-line-seg"></div></div>
+        <div class="tl-content"><div class="tl-year" style="color:var(--teal)">1973</div><div class="tl-title">Retorno democrático — Cámpora / Perón</div><div class="tl-text">GAN (Gran Acuerdo Nacional) de Lanusse. Perón vuelve del exilio. Cámpora → Perón → Isabel. Alta violencia política: Montoneros, ERP, Triple A. Crisis antes del golpe.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot" style="background:var(--red)"></div><div class="tl-line-seg"></div></div>
+        <div class="tl-content"><div class="tl-year" style="color:var(--red)">24/03/1976</div><div class="tl-title">El Proceso — Junta Militar</div><div class="tl-text">Videla – Massera – Agosti. Última y más brutal dictadura. Terrorismo de Estado sistemático. Doble Estado: administrativo + clandestino.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot" style="background:var(--amber)"></div><div class="tl-line-seg"></div></div>
+        <div class="tl-content"><div class="tl-year" style="color:var(--amber)">1982</div><div class="tl-title">Guerra de Malvinas</div><div class="tl-text">Galtieri busca apoyo social con la guerra. Apoyo masivo inicial. Derrota completa ante el Reino Unido. Crisis terminal del régimen.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot" style="background:var(--teal)"></div></div>
+        <div class="tl-content"><div class="tl-year" style="color:var(--teal)">1983</div><div class="tl-title">Retorno democrático — Alfonsín</div><div class="tl-text">Triunfo de la UCR sobre el peronismo. La democracia como expectativa social ampliamente compartida.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">La última dictadura (1976–1983) — ejes clave</div>
+    <div class="cards">
+      <div class="card" style="border-color:#3a1010">
+        <div class="card-label" style="color:var(--red)">Terrorismo de Estado</div>
+        <div class="card-body">Centros clandestinos de detención (CCD), desaparición forzada, tortura sistemática. El objetivo no era solo eliminar opositores sino generar terror en toda la sociedad para disciplinarla.</div>
+      </div>
+      <div class="card" style="border-color:#3a1010">
+        <div class="card-label" style="color:var(--red)">Doble Estado</div>
+        <div class="card-body">Coexistía un Estado administrativo visible (ministerios, leyes) con un Estado clandestino (centros de detención, grupos de tareas). La fachada de legalidad cubría el terror.</div>
+      </div>
+      <div class="card" style="border-color:#4a2a00">
+        <div class="card-label" style="color:var(--amber)">Política económica — Martínez de Hoz</div>
+        <div class="card-body">Apertura financiera + "tablita" cambiaria (dólar barato) → "plata dulce" y "bicicleta" financiera → desindustrialización → deuda externa → crisis 1980-82. Concentración económica.</div>
+      </div>
+      <div class="card" style="border-color:#4a2a00">
+        <div class="card-label" style="color:var(--amber)">Malvinas (1982)</div>
+        <div class="card-body">Galtieri buscó apoyo social con la guerra. Apoyo inicial masivo. Derrota militar completa → deslegitimó definitivamente al régimen y eliminó su capacidad de negociar la salida.</div>
+      </div>
+    </div>
+    <div class="keybox red"><strong>Paradoja central del Proceso:</strong> el régimen decía "achicar el Estado" pero usó al Estado para el terror y el beneficio de grupos económicos concentrados. El discurso liberal encubría un Estado intervencionista y violento.</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Preguntas de guía — Romero Caps. VI y VII</div>
+    <div class="accordion" id="acc-argentina"></div>
+  </div>
+</section>
+
+<!-- ========== SECCIÓN 7 ========== -->
+<section class="section" id="s7">
+  <div class="section-header">
+    <div class="section-num" style="background:var(--teal-bg);color:var(--teal);">7</div>
+    <div>
+      <h2>Transición democrática y Derechos Humanos</h2>
+      <p>Alfonsín · 1985 como año clave · Derechos humanos · Kant</p>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Conceptos de la transición</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label" style="color:var(--blue)">Transición</div>
+        <div class="card-title">Cambio de régimen</div>
+        <div class="card-body">Período de cambio de un régimen autoritario a uno democrático. El resultado es incierto: puede fracasar y volver al autoritarismo.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--teal)">Consolidación</div>
+        <div class="card-title">La democracia "se normaliza"</div>
+        <div class="card-body">La democracia se estabiliza: actores clave aceptan las reglas del juego como "el único juego posible". Se descarta la opción autoritaria.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Transiciones argentinas comparadas</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Dimensión</th><th>1973 (fallida)</th><th>1983 (exitosa)</th></tr></thead>
+        <tbody>
+          <tr><td>Contexto</td><td>Alta polarización, violencia armada, crisis del peronismo en el poder</td><td>Derrota en Malvinas, descrédito militar total, crisis económica</td></tr>
+          <tr><td>Sociedad civil</td><td>Movilizada pero dividida entre proyectos radicalmente opuestos</td><td>DDHH como eje articulador, fuerte demanda democrática transversal</td></tr>
+          <tr><td>Militares</td><td>Retirada negociada con poder de veto residual</td><td>Derrota de Malvinas eliminó su capacidad de negociar condiciones</td></tr>
+          <tr><td>Resultado</td><td>Golpe de 1976 apenas 3 años después</td><td>Democracia que se consolida y persiste hasta hoy</td></tr>
+          <tr><td>Factor clave</td><td>Cultura política de enfrentamiento, lógica de "enemigo"</td><td>La democracia como expectativa social ampliamente compartida</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Actores en la transición</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label" style="color:var(--blue)">Élites políticas</div>
+        <div class="card-body">Negocian la salida. La incertidumbre puede llevar a pactos. Clave: qué concesiones hacen al régimen saliente (ej.: leyes de Punto Final).</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--teal)">Sociedad civil</div>
+        <div class="card-body">Presión desde abajo. En 1983: Madres de Plaza de Mayo, organismos de DDHH y movilización social masiva fueron factores decisivos.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--red)">Régimen autoritario</div>
+        <div class="card-body">Nostálgicos del régimen vs. reformistas. La derrota de Malvinas eliminó la capacidad de imponer condiciones a la transición.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--purple)">Actores internacionales</div>
+        <div class="card-body">Presión de organismos de DDHH y gobiernos. Contexto de "tercera ola" democratizadora global (Huntington).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">★ 1985 — El año clave (Romero)</div>
+    <div class="keybox gold"><strong>Juicio a las Juntas (1985):</strong> hito histórico mundial. Argentina fue el primer país en juzgar a sus propios dictadores en democracia. Condenas a Videla, Massera y otros. Símbolo de que la democracia podía hacer justicia.</div>
+    <div class="keybox gold"><strong>Plan Austral (1985):</strong> plan de estabilización de Alfonsín para frenar la inflación. Tuvo éxito inicial pero fracasó porque no pudo resolver la <em>puja distributiva</em> ni el gasto público acumulado. La inflación volvió con más fuerza.</div>
+    <div class="exam-tip">Cuando pregunten por 1985, mencioná AMBAS dimensiones: justicia (Juicio a las Juntas) + economía (Plan Austral). La pregunta puede pedir que las articulés.</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Gobierno de Alfonsín (1983–1989) — tensiones centrales</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label" style="color:var(--teal)">Ilusión democrática</div>
+        <div class="card-body">El triunfo de Alfonsín se sustentó en el valor de la democracia por sobre los partidos (la "civilidad"). Gran expectativa social que luego chocó con la realidad.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--red)">Cuestión militar</div>
+        <div class="card-body">Presión de los "carapintadas" (levantamientos de 1987, 1988). Alfonsín cede: Ley de Punto Final y Ley de Obediencia Debida. Crisis de legitimidad.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--amber)">Crisis económica</div>
+        <div class="card-body">Plan Austral (1985): éxito inicial, fracaso posterior. Hiperinflación de 1989. Alfonsín entrega el poder a Menem antes de tiempo. Fin traumático del gobierno.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--purple)">Cuestión sindical</div>
+        <div class="card-body">La CGT realizó 13 paros generales contra el gobierno radical. El movimiento obrero fue uno de los actores que más presionó al gobierno de Alfonsín.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Derechos Humanos — Capítulo 14</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label" style="color:var(--purple)">Declaración Universal 1948</div>
+        <div class="card-body">Post Segunda Guerra Mundial. Los DDHH pasan a ser objeto del derecho internacional, ya no solo de cada Estado. Punto de inflexión histórico.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--purple)">Características</div>
+        <div class="card-body">Universales (para toda persona), inalienables (no se pueden quitar ni transferir), indivisibles (civiles, políticos, económicos y sociales van juntos).</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--purple)">Kant — base filosófica</div>
+        <div class="card-body">El ser humano como "fin en sí mismo, nunca como medio". Dignidad humana inherente a toda persona por su racionalidad. Base filosófica de los DDHH modernos.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--amber)">Críticas</div>
+        <div class="card-body">Relativismo cultural: los DDHH serían una construcción occidental impuesta. Debate universalismo vs. particularismo. No resuelto.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Preguntas de guía</div>
+    <div class="accordion" id="acc-transicion"></div>
+  </div>
+</section>
+
+<footer>
+  ICSE 2026 — Guía elaborada para el Primer Parcial (08/05/2026) · Semanas 1 a 5
+</footer>
+
+<script>
+// ACCORDION
+function buildAccordion(containerId, items) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = items.map((item, i) => `
+    <div class="acc-item" id="${containerId}-${i}">
+      <div class="acc-q" onclick="toggleAcc('${containerId}-${i}')">
+        <span>${item.q}</span>
+        <div class="acc-icon">+</div>
+      </div>
+      <div class="acc-a">
+        <div class="acc-a-inner">${item.a}</div>
+      </div>
+    </div>`).join('');
+}
+
+function toggleAcc(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+// ——— DATA ———
+
+buildAccordion('acc-estado', [
+  {q: '¿Qué significa el "monopolio de la violencia legítima"? Dá un ejemplo.',
+   a: 'Significa que solo el Estado puede usar la fuerza de manera legal y aceptada socialmente, a través de instituciones como la policía o el ejército. Por ejemplo, la policía puede detener a una persona porque actúa bajo normas legales. Si grupos armados ejercen violencia por fuera del control estatal, la autoridad del Estado se debilita.'},
+  {q: '¿Por qué el Estado necesita legitimidad además de coerción?',
+   a: 'La pura fuerza no alcanza para sostenerse en el tiempo. La población debe reconocer la autoridad como válida (legítima). Si el Estado solo usa la fuerza sin legitimidad, genera resistencia constante. Por eso Weber señala que el poder estatal se basa en la combinación de coerción (fuerza) y legitimidad (aceptación).'},
+  {q: '¿Cuál es la diferencia entre Estado y gobierno?',
+   a: 'El Estado es la estructura permanente: territorio, normas, instituciones, monopolio de la fuerza. El gobierno está formado por quienes administran el Estado temporalmente. Los gobiernos cambian con las elecciones o los golpes; el Estado continúa. Confundirlos es un error conceptual básico.'},
+  {q: '¿Por qué la misma definición jurídica abarca al Estado liberal y al fascista?',
+   a: 'Porque todos los tipos de Estado comparten los mismos elementos básicos: territorio, población, soberanía y sistema jurídico. Lo que varía es cómo los organizan: quién concentra el poder, qué derechos se garantizan, cómo funciona la economía. La definición de Weber es lo suficientemente abstracta para incluir modelos muy distintos.'},
+  {q: 'Explicá los tres tipos de legitimidad de Weber.',
+   a: '<strong>Tradicional:</strong> se basa en la costumbre y el hábito. Se obedece porque "siempre fue así", sin cuestionarlo. Ej.: monarquías hereditarias. <strong>Carismática:</strong> se basa en las cualidades personales extraordinarias de un líder. La obediencia surge por confianza y magnetismo. Sin ese líder, se desvanece. Ej.: Perón. <strong>Legal-racional:</strong> se fundamenta en normas y leyes racionalmente creadas. Se obedece a la ley, no a la persona. Es la base de los Estados modernos democráticos.'},
+  {q: '¿Qué diferencia al Estado liberal del Estado fascista?',
+   a: 'El Estado liberal limita el poder estatal, establece representación, divide los poderes y promueve la economía de mercado. Garantiza derechos individuales. El Estado fascista es totalitario: el individuo está subordinado al Estado, usa la violencia para eliminar la oposición, promueve el nacionalismo extremo y no admite el pluralismo. Surge como reacción al liberalismo pero con características distintas al comunismo.'}
+]);
+
+buildAccordion('acc-nacion', [
+  {q: '¿Por qué la nación es una construcción histórica y no algo natural?',
+   a: 'Según Gellner, Anderson y Hobsbawm, la idea de nación surge en la modernidad (s. XIX) como construcción política ligada al Estado moderno, al capitalismo y a la imprenta. No es eterna ni natural. Las "tradiciones" nacionales muchas veces fueron inventadas para crear cohesión. Anderson la llama "comunidad imaginada" porque sus miembros nunca se conocen todos pero se imaginan como comunidad.'},
+  {q: '¿Qué herramientas usó el Estado argentino para construir la nación?',
+   a: 'Educación pública (Ley 1420, escuela laica y gratuita), fiestas patrias, historia oficial que narraba un origen común, símbolos nacionales (bandera, himno), monumentos, servicio militar obligatorio. Todo en un contexto de alta inmigración masiva que hacía urgente crear una identidad compartida.'},
+  {q: '¿Por qué en Argentina primero se formó el Estado y después la nación?',
+   a: 'Porque las élites criollas construyeron las instituciones estatales después de la independencia (1810-1880) antes de que existiera una identidad nacional consolidada. La nación fue luego construida "desde arriba" mediante políticas públicas, especialmente educativas, para integrar a la población inmigrante y crear sentido de pertenencia común. En Europa, en cambio, generalmente la nación preexistía al Estado.'}
+]);
+
+buildAccordion('acc-regimenes', [
+  {q: '¿Qué es la poliarquía y por qué es una definición "mínima"?',
+   a: 'Es el concepto de Robert Dahl para definir democracia a partir de procedimientos e instituciones (no de igualdad económica o social). Es mínima porque solo exige que se cumplan las reglas del juego: elecciones libres, sufragio universal, libertad de expresión, alternancia posible, etc. No requiere igualdad perfecta. Sirve para distinguir con claridad democracia de autoritarismo.'},
+  {q: '¿Puede el populismo coexistir con la democracia?',
+   a: 'Sí, puede coexistir con elecciones e instituciones formalmente democráticas, pero tiende a erosionar la calidad democrática: debilita la división de poderes, concentra poder en el Ejecutivo, reduce el rol de los partidos y desvaloriza la intermediación institucional. Puede derivar en una "democracia de baja intensidad" donde las elecciones existen pero los contrapesos no funcionan.'},
+  {q: '¿Qué diferencia hay entre transición de gobierno y transición de régimen?',
+   a: 'Una transición de gobierno es el cambio de quién gobierna dentro del mismo régimen (ej.: de un partido a otro en elecciones). Una transición de régimen es el cambio en las reglas del juego sobre cómo se accede y ejerce el poder (ej.: de dictadura a democracia, o viceversa). La segunda es mucho más profunda.'},
+  {q: '¿Por qué los golpes militares disminuyeron en América Latina desde los 90?',
+   a: 'Por varios factores: el descrédito de los militares tras dictaduras fracasadas (económicamente y como en Malvinas); la presión internacional y de organismos de DDHH; la consolidación de normas democráticas en la región; y el surgimiento de nuevas formas de inestabilidad (interrupciones institucionales) que no requieren del ejército.'}
+]);
+
+buildAccordion('acc-violencia', [
+  {q: '¿Por qué un golpe de Estado es siempre violento aunque varíe el grado de violencia?',
+   a: 'Porque implica la ruptura del orden constitucional por la fuerza. Incluso un golpe "incruento" usa la amenaza de fuerza como respaldo. La violencia puede ser simbólica (presión, amenaza) o real (combates, detenciones), pero siempre está presente como fundamento del cambio de poder.'},
+  {q: '¿Qué diferencia al terrorismo de Estado del terrorismo común?',
+   a: 'El terrorismo de Estado es ejercido por el propio Estado o con su amparo oficial. Usa recursos estatales (fuerzas de seguridad, financiamiento público, centros clandestinos) para eliminar opositores y generar miedo masivo en la sociedad. Viola sistemáticamente el Estado de derecho que el Estado dice proteger. La última dictadura argentina es el ejemplo paradigmático.'},
+  {q: '¿Qué es el "dolus specialis" en la definición de genocidio?',
+   a: 'Es el elemento mental o intencional requerido por la Convención de 1948: la conducta debe tener como objetivo específico destruir total o parcialmente a un grupo nacional, étnico, racial o religioso en cuanto tal. Esta intención especial es lo que distingue al genocidio de otros crímenes. Sin ese dolo específico, puede ser crimen de lesa humanidad pero no genocidio.'},
+  {q: '¿Cuáles son los grupos protegidos por la Convención del Genocidio de 1948?',
+   a: 'La Convención protege a grupos nacionales, étnicos, raciales y religiosos. Los grupos políticos y sociales quedaron excluidos de la definición jurídica, lo cual genera debate en el caso argentino: las víctimas de la dictadura de 1976 eran principalmente perseguidas por su identidad política o social, no por pertenecer a un grupo étnico o religioso.'}
+]);
+
+buildAccordion('acc-argentina', [
+  {q: '¿Cuáles fueron las principales características del régimen de 1966 (Onganía)?',
+   a: 'La "Revolución Argentina" fue el primer golpe con intención de permanencia (no transitorio). Tenía un proyecto de modernización autoritaria con fuerte influencia tecnocrática. Intervino universidades ("Noche de los Bastones Largos"), suprimió partidos políticos y sindicatos. Generó como respuesta el Cordobazo (1969), que fue el primer gran crack del régimen.'},
+  {q: '¿Por qué el verdadero objetivo del terror en 1976 eran "los vivos" y no solo los desaparecidos?',
+   a: 'Porque el objetivo del terrorismo de Estado no era solo eliminar opositores sino generar terror en el conjunto de la sociedad para disciplinarla y silenciarla. La desaparición (sin cuerpo, sin certeza) maximizaba el efecto intimidatorio sobre todos: familia, vecinos, compañeros de trabajo. El terror paralizaba la movilización social.'},
+  {q: '¿Qué fue la "tablita", la "plata dulce" y la "bicicleta"?',
+   a: '<strong>Tablita:</strong> tipo de cambio preanunciado por Martínez de Hoz que sobrevaluó el peso, haciendo baratos los dólares y los productos importados. <strong>Plata dulce:</strong> el dinero fácil que permitió a la clase media viajar al exterior y consumir bienes importados. <strong>Bicicleta financiera:</strong> especulación con la diferencia entre tasas de interés en pesos y el tipo de cambio fijo. Todo terminó en deuda externa masiva y crisis financiera en 1980-82.'},
+  {q: '¿Por qué Malvinas aceleró el fin de la dictadura?',
+   a: 'Galtieri buscó apoyo social con la guerra para salir de la crisis política interna. El apoyo inicial fue masivo. Pero la derrota militar completa ante el Reino Unido deslegitimó definitivamente a las Fuerzas Armadas como institución rectora, eliminó su capacidad de imponer condiciones para la transición y generó la desintegración del propio régimen militar, que pasó a tener distintas facciones sin autoridad.'},
+  {q: '¿Cuáles fueron las características del clima previo al golpe de 1976?',
+   a: 'Alta violencia política (Montoneros, ERP por un lado; Triple A vinculada al lopezreguismo por otro). Muerte de Perón (1974) y debilidad del gobierno de Isabel Martínez. Crisis económica aguda. Polarización social extrema. "Lógica de enfrentamiento" que hacía imposible el diálogo. Este contexto hizo que sectores civiles aceptaran o apoyaron el golpe como "solución".'}
+]);
+
+buildAccordion('acc-transicion', [
+  {q: '¿Por qué la transición de 1973 fue fallida y la de 1983 exitosa?',
+   a: 'En 1973 había alta polarización, violencia armada y una cultura política de enfrentamiento ("o con Perón o contra Perón") que impidió consolidar la democracia → golpe en 1976. En 1983, la derrota de Malvinas deslegitimó totalmente a los militares, que no podían imponer condiciones. Además, la sociedad había madurado: convergió en la democracia como valor transversal, no solo como forma de gobierno.'},
+  {q: '¿Qué fue el Juicio a las Juntas y por qué fue histórico?',
+   a: 'Fue el juicio realizado en 1985 donde Argentina condenó a los principales responsables de la dictadura (Videla, Massera, Viola, entre otros). Fue históricamente significativo porque fue el primer caso en que una democracia latinoamericana juzgó a sus propios dictadores, sentando un precedente mundial. Mostró que la democracia podía hacer justicia sin recurrir a la venganza ni a la impunidad.'},
+  {q: '¿Por qué Alfonsín sancionó las leyes de Punto Final y Obediencia Debida?',
+   a: 'Por la presión de los levantamientos militares "carapintadas" (1987, 1988). Alfonsín argumentó que estas leyes eran necesarias para preservar la democracia ante la amenaza de un nuevo golpe. La Ley de Punto Final puso un límite temporal a los juicios; la Obediencia Debida exculpaba a quienes "cumplían órdenes". Fueron muy cuestionadas por los organismos de DDHH.'},
+  {q: '¿Qué características tienen los derechos humanos según el capítulo 14?',
+   a: '<strong>Universales:</strong> corresponden a toda persona, sin distinción. <strong>Inalienables:</strong> no se pueden quitar ni transferir. <strong>Indivisibles:</strong> los derechos civiles, políticos, económicos y sociales van juntos y se refuerzan mutuamente. Su base filosófica es kantiana: el ser humano como fin en sí mismo, nunca como medio para otro fin.'},
+  {q: '¿Qué significa que Kant sea la base filosófica de los DDHH?',
+   a: 'Kant sostuvo que cada ser humano tiene dignidad inherente porque es un ser racional y libre: debe ser tratado como fin en sí mismo, nunca como mero instrumento o medio para los fines de otro. Esta idea filosófica fundamenta la noción de que hay derechos que no pueden ser negados por ningún Estado, porque nacen de la condición humana misma, no de la concesión de una autoridad.'}
+]);
+</script>
+</body>
+</html>
